@@ -223,3 +223,4 @@ const createAnimal = (
   }, [])
   
   console.log("New Array: ", newArray)
+  

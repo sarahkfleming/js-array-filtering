@@ -90,31 +90,52 @@ const renderBusinesses = (businessesArray) => {
 /* -------------------------------------------------------------------------------------------------
         Find() Method
    --------------------------------------------------------------------------------------------------*/
-// outEl.innerHTML = "<h1>Active Businesses</h1>"
-   document
+// Find company by companyName
+// document
+//     .querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             const foundBusiness = businesses.find(
+//                 business =>
+//                     business.companyName.toLowerCase().includes(keyPressEvent.target.value.toLowerCase())
+//             )
+
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundBusiness.companyName}
+//                 </h2>
+//                 <section>
+//                 ${foundBusiness.addressFullStreet}
+
+//                 </section>
+//                 <section>
+//                 ${foundBusiness.addressCity},
+//                 ${foundBusiness.addressStateCode}
+//                 ${foundBusiness.addressZipCode}
+//                 </section>
+//             `
+//         }
+//     })
+
+// Find purchasing agent by first or last name
+    document
     .querySelector("#companySearch")
     .addEventListener("keypress", keyPressEvent => {
         if (keyPressEvent.charCode === 13) {
             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
             const foundBusiness = businesses.find(
                 business =>
-                    business.companyName.toLowerCase().includes(keyPressEvent.target.value.toLowerCase())
-            );
+                    business.purchasingAgent.nameFirst.toLowerCase().includes(keyPressEvent.target.value.toLowerCase()) || business.purchasingAgent.nameLast.toLowerCase().includes(keyPressEvent.target.value.toLowerCase())
+            )
 
             outEl.innerHTML = `
-                <h2>
-                ${foundBusiness.companyName}
+                <h2>${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
                 </h2>
                 <section>
-                ${foundBusiness.addressFullStreet}
-
-                </section>
-                <section>
-                ${foundBusiness.addressCity},
-                ${foundBusiness.addressStateCode}
-                ${foundBusiness.addressZipCode}
+                <p>${foundBusiness.companyName}</p>
+                <p>${foundBusiness.phoneWork}</p>
                 </section>
             `
         }
     })
-

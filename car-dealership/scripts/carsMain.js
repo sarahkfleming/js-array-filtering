@@ -16,7 +16,11 @@ import cars from "./carsData.js"
 // Total profit for 2017
 const carsSold2017 = cars.filter(car => car.purchase_date.includes("2017"))
 
-console.log(carsSold2017)
+const grossProfit2017 = carsSold2017.reduce((accumulator, currentCar) => accumulator + currentCar.gross_profit, 0)
+console.log("Gross Profit for 2017:", grossProfit2017)
+
+// In which month did they sell the most cars?
+
 
 // Which salesperson sold the most cars?
 

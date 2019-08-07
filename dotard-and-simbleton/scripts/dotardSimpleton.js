@@ -119,23 +119,69 @@ const renderBusinesses = (businessesArray) => {
 //     })
 
 // Find purchasing agent by first or last name
-    document
-    .querySelector("#companySearch")
-    .addEventListener("keypress", keyPressEvent => {
-        if (keyPressEvent.charCode === 13) {
-            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            const foundBusiness = businesses.find(
-                business =>
-                    business.purchasingAgent.nameFirst.toLowerCase().includes(keyPressEvent.target.value.toLowerCase()) || business.purchasingAgent.nameLast.toLowerCase().includes(keyPressEvent.target.value.toLowerCase())
-            )
+    // document
+    // .querySelector("#companySearch")
+    // .addEventListener("keypress", keyPressEvent => {
+    //     if (keyPressEvent.charCode === 13) {
+    //         /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+    //         const foundBusiness = businesses.find(
+    //             business =>
+    //                 business.purchasingAgent.nameFirst.toLowerCase().includes(keyPressEvent.target.value.toLowerCase()) || business.purchasingAgent.nameLast.toLowerCase().includes(keyPressEvent.target.value.toLowerCase())
+    //         )
 
-            outEl.innerHTML = `
-                <h2>${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
-                </h2>
-                <section>
-                <p>${foundBusiness.companyName}</p>
-                <p>${foundBusiness.phoneWork}</p>
-                </section>
-            `
+    //         outEl.innerHTML = `
+    //             <h2>${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
+    //             </h2>
+    //             <section>
+    //             <p>${foundBusiness.companyName}</p>
+    //             <p>${foundBusiness.phoneWork}</p>
+    //             </section>
+    //         `
+    //     }
+    // })
+
+    /* -------------------------------------------------------------------------------------------------
+        Reduce() Method
+   --------------------------------------------------------------------------------------------------*/
+
+//    businesses.forEach(business => {
+//     /* CALCULATE ORDER SUMMARY */
+//     let totalOrders = business.orders.reduce(
+//         (currentTotal, nextValue) => currentTotal += nextValue,
+//         0
+//     )
+
+//     outEl.innerHTML += `
+//         <h2>
+//             ${business.companyName}
+//             ($${totalOrders})
+//         </h2>
+//         <section>
+//             ${business.addressFullStreet}
+//         </section>
+//         <section>
+//             ${business.addressCity},
+//             ${business.addressStateCode}
+//             ${business.addressZipCode}
+//         </section>
+//     `;
+//     outEl.innerHTML += "<hr/>";
+// });
+
+    /* -------------------------------------------------------------------------------------------------
+        Practice: Big Spenders
+        Use the filter method to get all the big spenders in the main array into a new one.
+   --------------------------------------------------------------------------------------------------*/
+
+// Array to contain all the big spenders
+
+const bigSpenders = businesses.filter(business => {
+    for (let index = 0; index < business.orders.length; index++) {
+        const currentOrder = business.orders[index];
+        if (currentOrder > 9000) {
+        return currentOrder
         }
-    })
+    }
+})
+
+renderBusinesses(bigSpenders)
